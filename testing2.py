@@ -84,7 +84,7 @@ class Gebruiker:
         self.fiets = []
         self.velo = velo
 
-    def leen_fiets(self, naam, station):
+    def leen_fiets(self, fiets, station):
         if len(self.fiets) < self.max_capaciteit:
             random_fiets = random.choice(station.sloten)
             self.fiets.append(random_fiets.fiets)
@@ -232,7 +232,7 @@ class Simulatie:
                     if not slot.beschikbaar:
                         if slot.fiets is not None:  # Check if the slot has a bike
                             fiets_id = slot.fiets.fiets_id #zodat het geen null object doorgeeft
-                            gebruiker.leen_fiets(slot.fiets)  # Lease the bike
+                            gebruiker.leen_fiets(slot.fiets, station)  # Lease the bike
                             self.log.uit_fiets_gebruiker(station.naam, gebruiker.naam, fiets_id)
                             print(
                                 f"Gebruiker {gebruiker.naam} leent fiets {fiets_id} uit station {station.naam}"
