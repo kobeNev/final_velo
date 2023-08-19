@@ -2,6 +2,7 @@ from class_fiets import *
 from class_slot import *
 from class_station import *
 from class_gebruiker import *
+from class_transporter import *
 import json
 
 
@@ -10,6 +11,7 @@ class Velo:
         self.stations = []
         self.fietsen = []
         self.gebruikers = []
+        self.transporteurs = []
 
     def maak_stations_van_json(self):
         with open("velo.geojson", "r") as json_file:
@@ -36,6 +38,11 @@ class Velo:
                 naam = item["name"]
                 gebruiker = Gebruiker(f"G{index}", naam, self)
                 self.gebruikers.append(gebruiker)
+
+    def maak_transporteurs(self):
+        for i in range(1, 11):
+            transporteur = Transporteur(i, self)
+            self.transporteurs.append(transporteur)
 
     def plaats_fietsen_in_station(self):
         random.shuffle(self.stations)  # Meng de volgorde van de stations willekeurig
