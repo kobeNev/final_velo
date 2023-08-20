@@ -8,6 +8,8 @@ Wanneer je de applicatie opstart, kun je ervoor kiezen om dit te doen met het ar
 
 ### handmatig
 
+Het systeem kan ook handmatig worden bediend door deze optie te kiezen. Eerst wordt gevraagd of je een fiets wilt lenen of terugbrengen. Dit geef je aan door middel van toetsenbordinvoer. Vervolgens moet je aangeven of je een transporteur of een gebruiker bent, en tot slot welk station. Dan wordt de actie uitgevoerd.
+
 ### simulatie
 
 Het programma zal eerst vragen of je verder wilt gaan met de oude gegevens of een nieuwe simulatie wilt starten. Als je kiest voor een nieuwe simulatie, begint het programma met het uitlenen en terugbrengen van fietsen op de verschillende stations.
@@ -22,19 +24,26 @@ Om het programma af te sluiten, moet je de optie "afsluiten" selecteren. Vervolg
 
 # problemen
 
+Het juist koppelen van alle principes heb ik het meeste moeite mee gehad. Want apart kon ik alles gemakelijk programeren. Maar vanaf dat ik het wou toevoegen aan het groter geheel kreeg ik al snel veel foutmeldingen. Bijvoorbeeld het juist toekennen van classes aan andere classes en deze vervolgens loggen.
+
 ### planning
 
 Tijdens het jaar heb ik mij een beetje laten overrompelen door de mogelijkheden van Phyton.
 
-Het is een taal die zo veel mogleijkheden heeft dat het voor mij moeilijk was om in eerste intstantie de structuur te doorzien.
+Het is een taal die zo veel mogelijkheden heeft dat het voor mij moeilijk was om in eerste intstantie de structuur te doorzien.
 
-Deze zomer ben ik echt opnieuw gestartt mzt eht kijken van de lescideo’s het analyseren van de opdracht.
+Deze zomer ben ik echt opnieuw gestartt met het kijken van de lesvideo’s en het analyseren van de opdracht.
 
-Het inzicht krijging in de taal heeft opneiuwe tijd gevraagd maar ik heb de indruk datt door de aanmoedingingen van mijn omgeving, het automatiseren steeds beter gaat.
+Het inzicht krijging in de taal heeft opnieuw tijd gevraagd maar ik heb de indruk dat door de aanmoedingingen van mijn omgeving, het automatiseren steeds beter gaat.
 
 ### complexiteit
 
+Gedurende het jaar verliep het begrijpen van de opdracht behoorlijk moeizaam, wat resulteerde in minder succes. Gelukkig heb ik tijdens de herkansing veel extra inspanningen geleverd. Naarmate de tijd vorderde, begon ik de opdracht steeds beter te begrijpen en lukte het me om geleidelijk aan vooruitgang te boeken.
+
 ### nieuwe talen
+
+Ik  zelf had wat moeite met het begrijpen van Jinja, Pickle en Markdown. Na het bekijken van voorbeelden en het uitvoeren van veel tests, was ik in staat om een website te maken die alle logs weergeeft op een mooie HTML-pagina. Hierbij heb ik veel foutmeldingen moeten oplossen.
+
 
 - bestanden
     - [_site](https://github.com/kobeNev/final_velo/tree/main/_site)
