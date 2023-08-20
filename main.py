@@ -160,7 +160,11 @@ if __name__ == "__main__":
                     persoon = input("bent u een gebruiker of een transporteur? (G/T) ").upper()
                     if persoon == "G":
                       #manier om de fiets uit te lenen als gebruiker
-                        station = int(input("Bij welk station bent u? [1, 311]"))
+                        try:
+                            station = int(input("Bij welk station bent u? [1, 311]"))
+                        except IndexError:
+                            print(f"{station} is geen geldige invoer.")
+                            continue
                         gebruiker = random.choice(sim_program.velo.gebruikers)
                         fiets = random.choice(sim_program.velo.stations[station].sloten)
                         obj_station = sim_program.velo.stations[station]
@@ -172,7 +176,11 @@ if __name__ == "__main__":
                         
                     elif persoon == "T":
                         # Manier om de fiets uit te lenen als transporteur
-                        station = int(input("Bij welk station bent u? [1, 311]"))
+                        try:
+                            station = int(input("Bij welk station bent u? [1, 311]"))
+                        except IndexError:
+                            print(f"{station} is geen geldige invoer.")
+                            continue
                         random_transporteur = random.choice(sim_program.velo.transporteurs)
                         obj_station = sim_program.velo.stations[station]
                         naam_station = obj_station.naam
@@ -187,7 +195,11 @@ if __name__ == "__main__":
                     persoon = input("bent u een gebruiker of een transporteur? (G/T) ").upper()
                     if persoon == "G":
                         # Manier om de fiets terug te brengen als gebruiker
-                        station = int(input("Bij welk station bent u? [1, 311]"))
+                        try:
+                            station = int(input("Bij welk station bent u? [1, 311]"))
+                        except IndexError:
+                            print(f"{station} is geen geldige invoer.")
+                            continue
                         gebruiker = random.choice(sim_program.velo.gebruikers)
                         obj_station = sim_program.velo.stations[station]
                         naam_station = obj_station.naam
@@ -201,13 +213,22 @@ if __name__ == "__main__":
 
                     elif persoon == "T":
                         # Manier om de fiets terug te brengen als transporteur
-                        station = int(input("Bij welk station bent u? [1, 311]"))
+                        try:
+                            station = int(input("Bij welk station bent u? [1, 311]"))
+                        except IndexError:
+                            print(f"{station} is geen geldige invoer.")
+                            continue
                         random_transporteur = random.choice(sim_program.velo.transporteurs)
                         obj_station = sim_program.velo.stations[station]
                         naam_station = obj_station.naam
                         naam_transporteur = random_transporteur.transporteur_id
                         aantal_fietsen = random_transporteur.breng_fietsen(obj_station)
                         sim_program.log.in_fiets_transporteur(naam_station, aantal_fietsen, naam_transporteur)
+                    else:
+                        print(f"{type} is geen geldige invoer.")
+
+                else:
+                    print(f"{type} is geen geldige invoer.")
 
             elif keuze == "S":
                 clear()
