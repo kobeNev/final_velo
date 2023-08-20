@@ -23,9 +23,11 @@ class Transporteur:
         else:
             print(f"Transporteur {self.transporteur_id} heeft al {len(self.fietsen)} fietsen.")
         print(f"Transporteur {self.transporteur_id} heeft {len(self.fietsen)} fietsen.")
-        return self.fietsen
+        aantal_fietsen = len(self.fietsen)
+        return aantal_fietsen
 
     def breng_fietsen(self, station):
+        aantal_fietsen = len(self.fietsen)
         if len(self.fietsen) > 0:
             for slot in station.sloten:
                 if slot.beschikbaar:
@@ -36,7 +38,7 @@ class Transporteur:
         else:
             print(f"Transporteur {self.transporteur_id} heeft geen fietsen.")
         print(f"Transporteur {self.transporteur_id} heeft {len(self.fietsen)} fietsen afgezet.")
-        return self.fietsen
+        return aantal_fietsen
 
     def __str__(self):
         return f"Transporteur {self.transporteur_id} heeft {len(self.fietsen)} fietsen."

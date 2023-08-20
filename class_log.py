@@ -6,13 +6,11 @@ class Log:
         self.lijst = []
 
     def in_fiets_transporteur(self, station, aantal_fietsen, transporteur_id):
-        diction = {"type": "transporteur", "actie": "in", "station": station.naam,
-                   "aantal fietsen": aantal_fietsen, "id": transporteur_id}
+        diction = {"type": "transporteur", "actie": "in", "station": station, "naam": transporteur_id, "fiets_id": aantal_fietsen}
         self.lijst.append(diction)
 
     def uit_fiets_transporteur(self, station, aantal_fietsen, transporteur_id):
-        diction = {"type": "transporteur", "actie": "uit", "station": station.naam,
-                   "aantal fietsen": aantal_fietsen, "id": transporteur_id}
+        diction = {"type": "transporteur", "actie": "uit", "station": station, "naam": transporteur_id, "fiets_id": aantal_fietsen}
         self.lijst.append(diction)
 
     def in_fiets_gebruiker(self, station, naam, fiets):

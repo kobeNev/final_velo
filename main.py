@@ -27,49 +27,64 @@ class Simulatie:
         self.velo.maak_transporteurs()
 
     def start(self):
-        for gebruiker in self.velo.gebruikers:
-            if random.random() < 0.5:
-                station = random.choice(self.velo.stations)
-                if station.aantal_beschikbare_fietsen() > 0:
-                    slot = random.choice(station.sloten)
-                    if not slot.beschikbaar:
-                        if slot.fiets is not None:  # Check if the slot has a bike
-                            fiets_id = slot.fiets.fiets_id #zodat het geen null object doorgeeft
-                            gebruiker.leen_fiets(slot.fiets, station)  # Lease the bike
-                            self.log.uit_fiets_gebruiker(station.naam, gebruiker.naam, fiets_id)
-                            print(
-                                f"Gebruiker {gebruiker.naam} leent fiets {fiets_id} uit station {station.naam}"
-                            )
-                            break
+        option = random.randint(0, 3)
+        if option == 2:
+            for gebruiker in self.velo.gebruikers:
+                if random.random() < 0.5:
+                    station = random.choice(self.velo.stations)
+                    if station.aantal_beschikbare_fietsen() > 0:
+                        slot = random.choice(station.sloten)
+                        if not slot.beschikbaar:
+                            if slot.fiets is not None:  # Check if the slot has a bike
+                                fiets_id = slot.fiets.fiets_id #zodat het geen null object doorgeeft
+                                gebruiker.leen_fiets(slot.fiets, station)  # Lease the bike
+                                self.log.uit_fiets_gebruiker(station.naam, gebruiker.naam, fiets_id)
+                                print(
+                                    f"Gebruiker {gebruiker.naam} leent fiets {fiets_id} uit station {station.naam}"
+                                )
+                                break
+        elif option == 3:
+            random_transporteur = random.choice(sim_program.velo.transporteurs)
+            obj_station = random.choice(sim_program.velo.stations)
+            naam_station = obj_station.naam
+            naam_transporteur = random_transporteur.transporteur_id
+            aantal_fietsen = random_transporteur.neem_fietsen(obj_station)
+            sim_program.log.uit_fiets_transporteur(naam_station, aantal_fietsen, naam_transporteur)
+
 
     def stop(self):
-        for gebruiker in self.velo.gebruikers:
-            if gebruiker.fiets:  # Check if the user has a bike
-                if gebruiker.fiets[0] is not None:
-                    fiets_id = gebruiker.fiets[0].fiets_id #zodat het geen null object doorgeeft
-                    station = random.choice(self.velo.stations)
-                    if station.aantal_beschikbare_slots() > 0:
-                        slot = random.choice(station.sloten)
-                        if slot.beschikbaar:
-                            slot.plaats_fiets(gebruiker.fiets)  # Return the bike to the slot
-                            self.log.in_fiets_gebruiker(station.naam, gebruiker.naam, fiets_id)
-                            print(
-                                f"Gebruiker {gebruiker.naam} retourneert fiets {fiets_id} bij station {station.naam}"
-                            )
-                            break
+        option = random.randint(0, 3)
+        if option == 2:
+            for gebruiker in self.velo.gebruikers:
+                if gebruiker.fiets:  # Check if the user has a bike
+                    if gebruiker.fiets[0] is not None:
+                        fiets_id = gebruiker.fiets[0].fiets_id #zodat het geen null object doorgeeft
+                        station = random.choice(self.velo.stations)
+                        if station.aantal_beschikbare_slots() > 0:
+                            slot = random.choice(station.sloten)
+                            if slot.beschikbaar:
+                                slot.plaats_fiets(gebruiker.fiets)  # Return the bike to the slot
+                                self.log.in_fiets_gebruiker(station.naam, gebruiker.naam, fiets_id)
+                                print(
+                                    f"Gebruiker {gebruiker.naam} retourneert fiets {fiets_id} bij station {station.naam}"
+                                )
+                                break
+        if option == 3:
+            random_transporteur = random.choice(sim_program.velo.transporteurs)
+            obj_station = random.choice(sim_program.velo.stations)
+            naam_station = obj_station.naam
+            naam_transporteur = random_transporteur.transporteur_id
+            aantal_fietsen = random_transporteur.breng_fietsen(obj_station)
+            sim_program.log.in_fiets_transporteur(naam_station, aantal_fietsen, naam_transporteur)
+
 
     def stop_velo(self):
-        try:
-            print("\nKeyboardInterrupt detected. Saving data...")
-            with open('velo_data.pkl', 'wb') as f:
-                pickle.dump(sim_program.velo, f)
-            sim_program.log.opslaan_bestand()
-        except Exception as e:
-            print(f"An error occurred while saving data: {e}")
-        finally:
-            print("Data saved. Exiting...")
-            sys.exit(0)
-
+        print("\nKeyboardInterrupt gedetecteerd. Data wordt opgeslagen...")
+        with open('velo_data.pkl', 'wb') as f:
+            pickle.dump(sim_program.velo, f)
+        sim_program.log.opslaan_bestand()
+        print("Data saved. Exiting...")
+        sys.exit(0)
 
 #functie om HTML te genereren
 def generate_html(bike_movements):
@@ -106,12 +121,13 @@ if __name__ == "__main__":
             print("U kan de simulatie op elk moment stoppen door op CTRL+C te drukken.")
             tijd = input("Hoe snel wilt u de simulatie laten lopen? [1,100] ")
             try:
-                option = random.randint(1, 3)
-                time.sleep(1 / int(tijd))
-                if option == 2:
-                    sim_program.start()
-                elif option == 3:
-                    sim_program.stop()
+                while True:
+                    option = random.randint(1, 3)
+                    time.sleep(1 / int(tijd))
+                    if option == 2:
+                        sim_program.start()
+                    if option == 3:
+                        sim_program.stop()
 
             except KeyboardInterrupt:
                 sim_program.stop_velo()
@@ -148,16 +164,21 @@ if __name__ == "__main__":
                         gebruiker = random.choice(sim_program.velo.gebruikers)
                         fiets = random.choice(sim_program.velo.stations[station].sloten)
                         obj_station = sim_program.velo.stations[station]
+                        naam_station = obj_station.naam
+                        naam_gebruiker = gebruiker.naam
                         fiets_out = gebruiker.leen_fiets(fiets, obj_station)
-                        sim_program.log.uit_fiets_gebruiker(obj_station, gebruiker, fiets_out)
+                        fiets_id = gebruiker.fiets[0].fiets_id #om error te fixen
+                        sim_program.log.uit_fiets_gebruiker(naam_station, naam_gebruiker, fiets_id)
                         
                     elif persoon == "T":
                         # Manier om de fiets uit te lenen als transporteur
                         station = int(input("Bij welk station bent u? [1, 311]"))
                         random_transporteur = random.choice(sim_program.velo.transporteurs)
                         obj_station = sim_program.velo.stations[station]
+                        naam_station = obj_station.naam
+                        naam_transporteur = random_transporteur.transporteur_id
                         aantal_fietsen = random_transporteur.neem_fietsen(obj_station)
-                        sim_program.log.uit_fiets_transporteur(obj_station, aantal_fietsen, random_transporteur.transporteur_id)
+                        sim_program.log.uit_fiets_transporteur(naam_station, aantal_fietsen, naam_transporteur)
 
                 #fiets terugbrengen
                 elif type == "T":
@@ -169,20 +190,24 @@ if __name__ == "__main__":
                         station = int(input("Bij welk station bent u? [1, 311]"))
                         gebruiker = random.choice(sim_program.velo.gebruikers)
                         obj_station = sim_program.velo.stations[station]
+                        naam_station = obj_station.naam
+                        naam_gebruiker = gebruiker.naam
                         if gebruiker.fiets == []:
                             print("U heeft geen fiets om terug te brengen.")
                         else:
+                            fiets_id = gebruiker.fiets[0].fiets_id
                             gebruiker.retourneer_fiets(gebruiker.fiets[0])
-                            sim_program.log.in_fiets_gebruiker(obj_station, gebruiker)
+                            sim_program.log.in_fiets_gebruiker(naam_station, naam_gebruiker, fiets_id)
 
                     elif persoon == "T":
                         # Manier om de fiets terug te brengen als transporteur
                         station = int(input("Bij welk station bent u? [1, 311]"))
                         random_transporteur = random.choice(sim_program.velo.transporteurs)
                         obj_station = sim_program.velo.stations[station]
+                        naam_station = obj_station.naam
+                        naam_transporteur = random_transporteur.transporteur_id
                         aantal_fietsen = random_transporteur.breng_fietsen(obj_station)
-                        #loop over lijst fietsen om te loggen
-                        sim_program.log.in_fiets_transporteur(obj_station, aantal_fietsen, random_transporteur.transporteur_id)
+                        sim_program.log.in_fiets_transporteur(naam_station, aantal_fietsen, naam_transporteur)
 
             elif keuze == "S":
                 clear()
@@ -211,7 +236,19 @@ if __name__ == "__main__":
                             saved_velo = pickle.load(f)
                             Velo = saved_velo
                             print("Vorige simulatie is ingeladen.")
-                            sim_program.stop_velo()
+                            print("U kan de simulatie op elk moment stoppen door op CTRL+C te drukken.")
+                            tijd = input("Hoe snel wilt u de simulatie laten lopen? [1,100] ")
+                            while True:
+                                option = random.randint(1, 3)
+                                time.sleep(1 / int(tijd))
+                                if option == 2:
+                                    sim_program.start()
+                                if option == 3:
+                                    sim_program.stop()
+
+                    except KeyboardInterrupt:
+                        sim_program.stop_velo()
+
                     except FileNotFoundError:
                         print("Geen vorige simulatiegegevens gevonden.")
                     
