@@ -1,0 +1,9 @@
+pickle == 0.7.5
+time == 1.0.0
+os == 0.1.2
+sys == 1.0.0
+random == 1.0.0
+json == 2.0.9
+jinja2 == 2.10
+markdown2 == 2.3.5
+```

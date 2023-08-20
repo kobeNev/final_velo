@@ -59,12 +59,17 @@ class Simulatie:
                             break
 
     def stop_velo(self):
-        print("\nKeyboardInterrupt gedetecteerd. Data wordt opgeslagen...")
-        with open('velo_data.pkl', 'wb') as f:
-            pickle.dump(sim_program.velo, f)
-        sim_program.log.opslaan_bestand()
-        print("Data saved. Exiting...")
-        sys.exit(0)
+        try:
+            print("\nKeyboardInterrupt detected. Saving data...")
+            with open('velo_data.pkl', 'wb') as f:
+                pickle.dump(sim_program.velo, f)
+            sim_program.log.opslaan_bestand()
+        except Exception as e:
+            print(f"An error occurred while saving data: {e}")
+        finally:
+            print("Data saved. Exiting...")
+            sys.exit(0)
+
 
 #functie om HTML te genereren
 def generate_html(bike_movements):
@@ -141,8 +146,9 @@ if __name__ == "__main__":
                       #manier om de fiets uit te lenen als gebruiker
                         station = int(input("Bij welk station bent u? [1, 311]"))
                         gebruiker = random.choice(sim_program.velo.gebruikers)
+                        fiets = random.choice(sim_program.velo.stations[station].sloten)
                         obj_station = sim_program.velo.stations[station]
-                        fiets_out = gebruiker.leen_fiets(obj_station)
+                        fiets_out = gebruiker.leen_fiets(fiets, obj_station)
                         sim_program.log.uit_fiets_gebruiker(obj_station, gebruiker, fiets_out)
                         
                     elif persoon == "T":
