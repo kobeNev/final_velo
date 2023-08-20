@@ -167,7 +167,7 @@ if __name__ == "__main__":
                         naam_station = obj_station.naam
                         naam_gebruiker = gebruiker.naam
                         fiets_out = gebruiker.leen_fiets(fiets, obj_station)
-                        fiets_id = gebruiker.fiets[0].fiets_id #om error te fixen
+                        fiets_id = fiets_out[0].fiets_id
                         sim_program.log.uit_fiets_gebruiker(naam_station, naam_gebruiker, fiets_id)
                         
                     elif persoon == "T":
