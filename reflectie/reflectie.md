@@ -12,11 +12,15 @@ Het systeem kan ook handmatig worden bediend door deze optie te kiezen. Eerst wo
 
 ### simulatie
 
-Het programma zal eerst vragen of je verder wilt gaan met de oude gegevens of een nieuwe simulatie wilt starten. Als je kiest voor een nieuwe simulatie, begint het programma met het uitlenen en terugbrengen van fietsen op de verschillende stations.
+Het programma zal eerst vragen of je verder wilt gaan met de oude gegevens of een nieuwe simulatie wilt starten. Als je kiest voor een nieuwe simulatie, begint het programma met het uitlenen en terugbrengen van fietsen op de verschillende stations. En voor de oude laad het eerst de oude gegevens in en gaat het verder met de simulatie.
+
+### argument
+
+Je kan ook ervoor kiezen om -s erbij te typen bij start. Dan zal het programma rechtstreeks beginnen met de simulatie en slaag je het hele start scherm over.
 
 ### site genereren
 
-De website is gegenereerd met behulp van Jinja en Markdown en heeft hiervoor een template. Om de site te bekijken, moet je het bestand 'template_output.html' openen met een live server. Hier vind je een overzicht van alle voorbije acties.
+De website is gegenereerd met behulp van Jinja en Markdown en heeft hiervoor een template. Om de site te bekijken, moet je het bestand 'template_output.html' openen met een live server. Hier vind je een overzicht van alle voorbije acties. Bij de transporteur komen het aantal fietsen erop ipv het id en de naam is de nummer die deze transporter heeft.
 
 ### afsluiten
 
