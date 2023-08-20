@@ -20,7 +20,7 @@ Je kan ook ervoor kiezen om -s erbij te typen bij start. Dan zal het programma r
 
 ### site genereren
 
-De website is gegenereerd met behulp van Jinja en Markdown en heeft hiervoor een template. Om de site te bekijken, moet je het bestand 'template_output.html' openen met een live server. Hier vind je een overzicht van alle voorbije acties. Bij de transporteur komen het aantal fietsen erop ipv het id en de naam is de nummer die deze transporter heeft.
+De website is gegenereerd met behulp van Jinja en Markdown en heeft hiervoor een template. Om de site te bekijken, moet je het bestand 'template_output.html' openen met een live server. Hier vind je een overzicht van alle voorbije acties. Bij de transporteur komen het aantal fietsen erop ipv het id en de naam is de nummer die deze transporter heeft. Om de site te genereren moet je eerst een simulatie starten. Vervolgens het programma terug opstarten en de site genereren.
 
 ### afsluiten
 
