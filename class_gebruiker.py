@@ -30,7 +30,7 @@ class Gebruiker:
                     """print(f"Fiets {fiets.fiets_id} kon niet worden geleend.")"""
         else:
             """print(f"Gebruiker {self.naam} heeft al een fiets geleend.")"""
-        return self.fiets
+        return self.fiets[0]
 
     def retourneer_fiets(self, fiets):
         if fiets in self.fiets:

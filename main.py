@@ -171,9 +171,12 @@ if __name__ == "__main__":
                         naam_station = obj_station.naam
                         naam_gebruiker = gebruiker.naam
                         fiets_out = gebruiker.leen_fiets(fiets, obj_station)
-                        fiets_id = fiets_out[0].fiets_id
-                        sim_program.log.uit_fiets_gebruiker(naam_station, naam_gebruiker, fiets_id)
-                        
+                        if fiets_out is not None:
+                            fiets_id = fiets_out.fiets_id
+                            sim_program.log.uit_fiets_gebruiker(naam_station, naam_gebruiker, fiets_id)
+                        else:
+                            print("Fiets lenen is niet gelukt.")
+
                     elif persoon == "T":
                         # Manier om de fiets uit te lenen als transporteur
                         try:
