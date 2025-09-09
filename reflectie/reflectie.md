@@ -36,7 +36,7 @@ Tijdens het jaar heb ik mij een beetje laten overrompelen door de mogelijkheden 
 
 Het is een taal die zo veel mogelijkheden heeft dat het voor mij moeilijk was om in eerste intstantie de structuur te doorzien.
 
-Deze zomer ben ik echt opnieuw gestartt met het kijken van de lesvideo’s en het analyseren van de opdracht.
+Deze zomer ben ik echt opnieuw gestart met het kijken van de lesvideo’s en het analyseren van de opdracht.
 
 Het inzicht krijging in de taal heeft opnieuw tijd gevraagd maar ik heb de indruk dat door de aanmoedingingen van mijn omgeving, het automatiseren steeds beter gaat.
 
